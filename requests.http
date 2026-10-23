@@ -1,0 +1,64 @@
+### 1. Отримання списку всіх квитків (GET /tickets)
+### Також перевіряє заголовки X-API-Version та X-Service-Status
+GET http://localhost:3000/tickets
+Accept: application/json
+
+###
+
+### 2. Фільтрація квитків за назвою через search (GET /tickets?search=Imagine)
+GET http://localhost:3000/tickets?search=Imagine
+Accept: application/json
+
+###
+
+### 3. Отримання квитків з обмеженням кількості через limit (GET /tickets?limit=2)
+GET http://localhost:3000/tickets?limit=2
+Accept: application/json
+
+###
+
+### 4. Отримання квитка за існуючим ID (GET /tickets/1)
+GET http://localhost:3000/tickets/1
+Accept: application/json
+
+###
+
+### 5. Отримання квитка за неіснуючим ID - перевірка 404 Not Found (GET /tickets/99999)
+GET http://localhost:3000/tickets/99999
+Accept: application/json
+
+###
+
+### 6. Створення нового квитка (POST /tickets) - перевірка 201 Created
+POST http://localhost:3000/tickets
+Content-Type: application/json
+
+{
+  "title": "Фестиваль Atlas Weekend",
+  "price": 3200,
+  "venue": "ВДНГ, Київ",
+  "sector": "VIP Lounge",
+  "seatNumber": "A-12"
+}
+
+###
+
+### 7. Часткове оновлення квитка (PATCH /tickets/1)
+PATCH http://localhost:3000/tickets/1
+Content-Type: application/json
+
+{
+  "price": 2500,
+  "seatNumber": 16
+}
+
+###
+
+### 8. Видалення квитка (DELETE /tickets/2) - перевірка 204 No Content
+DELETE http://localhost:3000/tickets/2
+
+###
+
+### 9. Перевірка видалення - спроба отримати видалений квиток (GET /tickets/2 -> 404)
+GET http://localhost:3000/tickets/2
+Accept: application/json
